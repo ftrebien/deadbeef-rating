@@ -59,9 +59,9 @@ rating_action_rate_helper(DB_plugin_action_t *action, int ctx, int rating)
     while (it) {
         if (deadbeef->pl_is_selected(it) || ctx == DDB_ACTION_CTX_NOWPLAYING) {
             if (rating == -1) {
-                deadbeef->pl_delete_meta(it, "rating");
+                deadbeef->pl_delete_meta(it, "RATING");
             } else {
-                deadbeef->pl_set_meta_int(it, "rating", rating);
+                deadbeef->pl_set_meta_int(it, "RATING", rating);
             }
             deadbeef->pl_lock();
             const char *dec = deadbeef->pl_find_meta_raw(it, ":DECODER");
