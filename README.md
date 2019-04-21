@@ -1,30 +1,26 @@
 # DeaDBeeF Song Rating plugin
 
-A plugin enabling commands to rate track(s) by writing to the `%rating%` metadata tag. The commands are accessible from the context menu or by binding them to hotkeys. 
+A plugin enabling commands to rate tracks by writing to the `%rating%` metadata tag. The commands are accessible from the context menu or by binding them to hotkeys. 
 
 Big thanks to [Alexey Yakovenko](https://github.com/Alexey-Yakovenko) for the [DeaDBeeF](http://deadbeef.sourceforge.net/) music player.
 
 # Building & Installing
 1. Clone this repository
-2. Download `deadbeef.h`, for example from the [DeaDBeeF source code](http://deadbeef.sourceforge.net/download.html).
+2. Download `deadbeef.h`, for example from the [DeaDBeeF source code](http://deadbeef.sourceforge.net/download.html)
 3. Run `sh build.sh [path to dir with deadbeef.h]`
-4. Run `sh easyinstall.sh` to install the plugin to ~/.local/lib/deadbeef, or copy `rating.so` yourself to your DeaDBeeF plugin folder.
+4. Run `sh easyinstall.sh` to install the plugin to ~/.local/lib/deadbeef, or copy `rating.so` yourself to your DeaDBeeF plugin directory
+
+When DeaDBeeF is installed using one of the `.deb` packages, the path to `deadbeef.h` is `/opt/deadbeef/include/deadbeef/` and the plugin directory is `/opt/deadbeef/lib/deadbeef/`.
 
 # Uninstalling
-Run `sh easyuninstall.sh` to remove the plugin from ~/.local/lib/deadbeef, or remove `rating.so` yourself from your DeaDBeeF plugin folder.
+Run `sh easyuninstall.sh` to remove the plugin from ~/.local/lib/deadbeef, or remove `rating.so` yourself from your DeaDBeeF plugin directory.
 
 # Using
-In order to show the rating tags in the playlist, add a new custom column with the following format:
+In order to show the rating in the playlist, add a new custom column with the following format:
 
-`$ifequal([%rating%], 5, *****,)$ifequal([%rating%], 4, ****,)$ifequal([%rating%], 3, ***,)$ifequal([%rating%], 2, **,)$ifequal([%rating%], 1, *,)`
+`$if($strcmp(%rating%,$add(0,%rating%)),$select($add(1,$div($min(100,$max(0,%rating%)),10)),0,½,1,1½,2,2½,3,3½,4,4½,5) ★,%rating%)`
 
-If you want, you can replace `*` with your rating indicator of choice. For example with beautiful awesome stars:
-
-`$ifequal([%rating%], 5,★★★★★,)$ifequal([%rating%], 4,★★★★,)$ifequal([%rating%], 3,★★★,)$ifequal([%rating%], 2,★★,)$ifequal([%rating%], 1,★,)`
-
-Or combine them with empty stars:
-
-`$ifequal([%rating%], 5,★★★★★,)$ifequal([%rating%], 4,★★★★☆,)$ifequal([%rating%], 3,★★★☆☆,)$ifequal([%rating%], 2,★★☆☆☆,)$ifequal([%rating%], 1,★☆☆☆☆,)$ifequal([%rating%], 0,☆☆☆☆☆,)`
+You can replace the numbers with your rating indicators of choice, such as `★`, `☆` and `⯪`.
 
 # License
 

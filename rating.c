@@ -110,33 +110,63 @@ rating_action_rate0(DB_plugin_action_t *action, int ctx)
 }
 
 static int
+rating_action_rate0h(DB_plugin_action_t *action, int ctx)
+{
+    return rating_action_rate_helper(action, ctx, 10);
+}
+
+static int
 rating_action_rate1(DB_plugin_action_t *action, int ctx)
 {
-    return rating_action_rate_helper(action, ctx, 1);
+    return rating_action_rate_helper(action, ctx, 20);
+}
+
+static int
+rating_action_rate1h(DB_plugin_action_t *action, int ctx)
+{
+    return rating_action_rate_helper(action, ctx, 30);
 }
 
 static int
 rating_action_rate2(DB_plugin_action_t *action, int ctx)
 {
-    return rating_action_rate_helper(action, ctx, 2);
+    return rating_action_rate_helper(action, ctx, 40);
+}
+
+static int
+rating_action_rate2h(DB_plugin_action_t *action, int ctx)
+{
+    return rating_action_rate_helper(action, ctx, 50);
 }
 
 static int
 rating_action_rate3(DB_plugin_action_t *action, int ctx)
 {
-    return rating_action_rate_helper(action, ctx, 3);
+    return rating_action_rate_helper(action, ctx, 60);
+}
+
+static int
+rating_action_rate3h(DB_plugin_action_t *action, int ctx)
+{
+    return rating_action_rate_helper(action, ctx, 70);
 }
 
 static int
 rating_action_rate4(DB_plugin_action_t *action, int ctx)
 {
-    return rating_action_rate_helper(action, ctx, 4);
+    return rating_action_rate_helper(action, ctx, 80);
+}
+
+static int
+rating_action_rate4h(DB_plugin_action_t *action, int ctx)
+{
+    return rating_action_rate_helper(action, ctx, 90);
 }
 
 static int
 rating_action_rate5(DB_plugin_action_t *action, int ctx)
 {
-    return rating_action_rate_helper(action, ctx, 5);
+    return rating_action_rate_helper(action, ctx, 100);
 }
 
 static int
@@ -155,7 +185,7 @@ static DB_plugin_action_t remove_rating_action = {
 };
 
 static DB_plugin_action_t rate5_action = {
-    .title = "Rate 5",
+    .title = "Rate 5 ★",
     .name = "rating_rate5",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
@@ -163,49 +193,94 @@ static DB_plugin_action_t rate5_action = {
     .next = &remove_rating_action
 };
 
+static DB_plugin_action_t rate4h_action = {
+    .title = "Rate 4½ ★",
+    .name = "rating_rate4h",
+    .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
+    | DB_ACTION_ADD_MENU,
+    .callback2 = rating_action_rate4h,
+    .next = &rate5_action
+};
+
 static DB_plugin_action_t rate4_action = {
-    .title = "Rate 4",
+    .title = "Rate 4 ★",
     .name = "rating_rate4",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
     .callback2 = rating_action_rate4,
-    .next = &rate5_action
+    .next = &rate4h_action
+};
+
+static DB_plugin_action_t rate3h_action = {
+    .title = "Rate 3½ ★",
+    .name = "rating_rate3h",
+    .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
+    | DB_ACTION_ADD_MENU,
+    .callback2 = rating_action_rate3h,
+    .next = &rate4_action
 };
 
 static DB_plugin_action_t rate3_action = {
-    .title = "Rate 3",
+    .title = "Rate 3 ★",
     .name = "rating_rate3",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
     .callback2 = rating_action_rate3,
-    .next = &rate4_action
+    .next = &rate3h_action
+};
+
+static DB_plugin_action_t rate2h_action = {
+    .title = "Rate 2½ ★",
+    .name = "rating_rate2h",
+    .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
+    | DB_ACTION_ADD_MENU,
+    .callback2 = rating_action_rate2h,
+    .next = &rate3_action
 };
 
 static DB_plugin_action_t rate2_action = {
-    .title = "Rate 2",
+    .title = "Rate 2 ★",
     .name = "rating_rate2",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
     .callback2 = rating_action_rate2,
-    .next = &rate3_action
+    .next = &rate2h_action
+};
+
+static DB_plugin_action_t rate1h_action = {
+    .title = "Rate 1½ ★",
+    .name = "rating_rate1h",
+    .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
+    | DB_ACTION_ADD_MENU,
+    .callback2 = rating_action_rate1h,
+    .next = &rate2_action
 };
 
 static DB_plugin_action_t rate1_action = {
-    .title = "Rate 1",
+    .title = "Rate 1 ★",
     .name = "rating_rate1",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
     .callback2 = rating_action_rate1,
-    .next = &rate2_action
+    .next = &rate1h_action
+};
+
+static DB_plugin_action_t rate0h_action = {
+    .title = "Rate ½ ★",
+    .name = "rating_rate0h",
+    .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
+    | DB_ACTION_ADD_MENU,
+    .callback2 = rating_action_rate0h,
+    .next = &rate1_action
 };
 
 static DB_plugin_action_t rate0_action = {
-    .title = "Rate 0",
+    .title = "Rate 0 ★",
     .name = "rating_rate0",
     .flags = DB_ACTION_SINGLE_TRACK | DB_ACTION_MULTIPLE_TRACKS
     | DB_ACTION_ADD_MENU,
     .callback2 = rating_action_rate0,
-    .next = &rate1_action
+    .next = &rate0h_action
 };
 
 static DB_plugin_action_t *
