@@ -295,7 +295,7 @@ static DB_misc_t plugin = {
     .plugin.version_major = 1,
     .plugin.version_minor = 1,
     .plugin.type = DB_PLUGIN_MISC,
-    .plugin.name = "rating",
+    .plugin.name = "Song Rating",
     .plugin.descr = "Enables commands to rate song(s) by editing the metadata tag rating.",
     .plugin.copyright =
     "Rating plugin for DeaDBeeF Player\n"
