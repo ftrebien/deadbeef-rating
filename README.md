@@ -18,7 +18,7 @@ Run `sh easyuninstall.sh` to remove the plugin from ~/.local/lib/deadbeef, or re
 # Using
 In order to show the rating in the playlist, add a new custom column with the following format:
 
-`$if($strcmp(%rating%,$add(0,%rating%)),$select($add(1,$div($min(100,$max(0,%rating%)),10)),0,½,1,1½,2,2½,3,3½,4,4½,5) ★,%rating%)`
+`$if($strcmp(%rating%,$add(0,%rating%)),$select($add(1,$div($min(100,$max(0,%rating%)),10)),0,1,2,3,4,5,6,7,8,9,10),%rating%)`
 
 You can replace the numbers with your rating indicators of choice, such as `★`, `☆` and `⯪`.
 
