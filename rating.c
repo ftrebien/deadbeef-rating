@@ -67,7 +67,7 @@ rating_action_rate_helper(DB_plugin_action_t *action, int ctx, int rating)
             const char *dec = deadbeef->pl_find_meta_raw(it, ":DECODER");
             char decoder_id[100];
             if (dec) {
-				snprintf(decoder_id, sizeof(decoder_id), "%s\n", dec);
+                snprintf(decoder_id, sizeof(decoder_id), "%s\n", dec);
             }
             int match = it && dec;
             deadbeef->pl_unlock();
