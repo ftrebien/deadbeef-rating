@@ -67,7 +67,7 @@ rating_action_rate_helper(DB_plugin_action_t *action, int ctx, int rating)
             const char *dec = deadbeef->pl_find_meta_raw(it, ":DECODER");
             char decoder_id[100];
             if (dec) {
-                strncpy(decoder_id, dec, sizeof(decoder_id));
+				snprintf(decoder_id, sizeof(decoder_id), "%s\n", dec);
             }
             int match = it && dec;
             deadbeef->pl_unlock();
@@ -103,73 +103,73 @@ out:
 }
 
 static int
-rating_action_rate0(DB_plugin_action_t *action, int ctx)
+rating_action_rate0(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 0);
 }
 
 static int
-rating_action_rate0h(DB_plugin_action_t *action, int ctx)
+rating_action_rate0h(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 10);
 }
 
 static int
-rating_action_rate1(DB_plugin_action_t *action, int ctx)
+rating_action_rate1(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 20);
 }
 
 static int
-rating_action_rate1h(DB_plugin_action_t *action, int ctx)
+rating_action_rate1h(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 30);
 }
 
 static int
-rating_action_rate2(DB_plugin_action_t *action, int ctx)
+rating_action_rate2(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 40);
 }
 
 static int
-rating_action_rate2h(DB_plugin_action_t *action, int ctx)
+rating_action_rate2h(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 50);
 }
 
 static int
-rating_action_rate3(DB_plugin_action_t *action, int ctx)
+rating_action_rate3(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 60);
 }
 
 static int
-rating_action_rate3h(DB_plugin_action_t *action, int ctx)
+rating_action_rate3h(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 70);
 }
 
 static int
-rating_action_rate4(DB_plugin_action_t *action, int ctx)
+rating_action_rate4(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 80);
 }
 
 static int
-rating_action_rate4h(DB_plugin_action_t *action, int ctx)
+rating_action_rate4h(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 90);
 }
 
 static int
-rating_action_rate5(DB_plugin_action_t *action, int ctx)
+rating_action_rate5(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, 100);
 }
 
 static int
-rating_action_remove(DB_plugin_action_t *action, int ctx)
+rating_action_remove(DB_plugin_action_t *action, ddb_action_context_t ctx)
 {
     return rating_action_rate_helper(action, ctx, -1);
 }
